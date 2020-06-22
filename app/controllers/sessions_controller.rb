@@ -1,13 +1,14 @@
 class SessionsController < ApplicationController
   def new
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authentiate(params[:session][:passwor])
-    else 
-      render :new
-    end
   end
   
   def create
-    render :new
+    user = User.find_by(email: params[:session][:email].downcase)
+    if user && user.authentiate(params[:session][:password])
+      
+    else 
+      flash.now[:danger] = "認証に失敗しました。"
+      render :new
+    end
   end
 end
