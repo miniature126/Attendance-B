@@ -9,7 +9,13 @@
       <%= f.email_field :email, class: "form-control" %>
       
       <%= f.label :password, class: "label-login" %>
-      <%= f.password_field :password, class: "form_control" %>
+      <%= f.password_field :password, class: "form-control" %>
+      
+      <%= f.submit "Log in", class: "btn btn-primary btn-block btn-login" %>
+    <% end %>
+    <p>
+      アカウント作成は<%= link_to "こちら", signup_path %>から
+    </p>
   </div>
 </div>
 
