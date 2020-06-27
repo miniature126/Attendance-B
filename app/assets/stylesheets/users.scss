@@ -19,7 +19,6 @@ h1 {
 
 .btn-signup {
   margin-top: 10px;
-  margin-bottom: 50px;
 }
 
 .label-user--edit {
@@ -28,5 +27,11 @@ h1 {
 
 .btn-user--edit {
   margin-top: 10px;
-  margin-bottom: 50px;
+}
+
+/* All users */
+#table-users {
+  td{
+    vertical-align: middle;
+  }
 }
