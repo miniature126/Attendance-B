@@ -1,17 +1,15 @@
 class UsersController < ApplicationController
-  before_action :ser_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
-  before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info]
-  
+  before_action :set_one_month, only: :show
   
   def index
     @users = User.paginate(page: params[:page])
   end
   
   def show
-    @first_day = Date.current.beginning_of_month
-    @last_day = @first_day.end_of_month
   end
   
   def new
@@ -21,7 +19,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user #保存成功後、そのままログイン
+      log_in @user
       flash[:success] = "ユーザーを作成しました。"
       redirect_to @user
     else
@@ -69,7 +67,7 @@ class UsersController < ApplicationController
     end
     
     #paramsハッシュからユーザー情報を取得
-    def ser_user
+    def set_user
       @user = User.find(params[:id])
     end
     
