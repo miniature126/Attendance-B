@@ -2,7 +2,7 @@
 <div>
     <table class="table table-bordered table-condensed user-table">
         <tr>
-            <td class="btn-users-show">
+            <td>
                 <%= link_to "←", user_path(date: @first_day.prev_month), class: "btn btn-default" %>
                 <%= l(@first_day, format: :middle) %>　時間管理表
                 <%= link_to "→", user_path(date: @first_day.next_month), class: "btn btn-default" %>
