@@ -13,7 +13,7 @@ h1 {
 }
 
 /* user-info-table */
-.user-table {
+.user-table > tbody > tr > td {
   vertical-align: middle;
   text-align: center;
 }
@@ -21,7 +21,7 @@ h1 {
 /* user-attendance-info */
 #table-attendances {
   th {
-    vertical-align: middle;
+    vertical-align: bottom;
     text-align: center;
   }
   td {
