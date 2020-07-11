@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  # before_action :user_logged_in?, only: [:new, :create]
+  
   def new
   end
   
@@ -20,4 +22,12 @@ class SessionsController < ApplicationController
     flash[:success] = "ログアウトしました。"
     redirect_to root_url
   end
+  
+  #beforeフィルター
+    # def user_logged_in?
+    #   current_user?(@user)
+    #   logged_in?
+    #   flash[:info] = "すでにログイン済みです。"
+    #   redirect_to root_url
+    # end
 end
