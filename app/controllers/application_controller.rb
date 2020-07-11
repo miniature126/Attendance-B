@@ -52,4 +52,13 @@ class ApplicationController < ActionController::Base
     flash[:danger] = "ページ情報の取得に失敗しました、再アクセスしてください。"
     redirect_to root_url
   end
+  
+    #@userが現在ログインしているユーザー、もしくは管理者権限を持ったユーザーかどうかを確認
+    def admin_or_correct_user
+      @user = User.find_by(params[:user_id]) if @user.blank?
+      unless current_user?(@user) || current_user.admin?
+        flash[:danger] = "権限がありません。"
+        redirect_to root_url
+      end
+    end
 end
