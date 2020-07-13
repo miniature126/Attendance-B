@@ -24,8 +24,6 @@
 </div>
 
 <div class="btn-users-show">
-    <!--<div class="btn btn-default">１週間</div>-->
-    <!--<div class="btn btn-default">１ヶ月</div>-->
     <%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-default" %>
 </div>
 <div>
@@ -52,8 +50,19 @@
             <% @attendances.each do |day| %>
                 <tr>
                     <td><%= l(day.worked_on, format: :short) %></td>
-                    <td><%= $days_of_the_week[day.worked_on.wday] %></td>
-                    <td>
+                    <% if day.worked_on.wday == 0 %>
+                        <td>
+                            <font color="red"><%= $days_of_the_week[day.worked_on.wday] %></font>
+                        </td>
+                    <% elsif day.worked_on.wday == 6 %>
+                        <td>
+                            <font color="blue"><%= $days_of_the_week[day.worked_on.wday] %></font>
+                        </td>
+                    <% else %>
+                        <td>
+                            <%= $days_of_the_week[day.worked_on.wday] %>
+                        </td>
+                    <% end %>
                         <% if btn_text = attendance_state(day) %>
                             <%= link_to "#{btn_text}", user_attendance_path(@user, day), method: :patch, class: "btn btn-default btn-attendance" %>
                         <% end %>

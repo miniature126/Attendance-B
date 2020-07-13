@@ -48,25 +48,6 @@ class ApplicationController < ActionController::Base
       @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on)
     end
     
-  #ページ出力前に１週間分のデータの存在を確認・セットする  
-  # def set_one_week
-  #   @first_day = params[:date].nil? ?
-  #   Date.current.beginning_of_week : params[:date].to_date
-  #   @last_day = @first_day.end_of_week
-  #   one_week = [*@first_day..@last_day]
-  #   #ユーザーに紐付く１週間分のレコードを検索し取得
-  #   @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on)
-    
-  #   #対象の週の日数とユーザーに紐付く１週間分のレコードの日数が一致するか評価
-  #   unless one_week.count == @attendances.count
-  #     ActiveRecord::Base.transaction do #トランザクションを開始
-  #       #繰り返し処理により１週間分の勤怠データを生成
-  #       one_week.each { |day| @user.attendances.create!(worked_on: day) }
-  #     end
-  #     @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on)
-  #   end
-  # end
-    
   rescue ActiveRecord::RecordInvalid #トランザクションによるエラー分岐
     flash[:danger] = "ページ情報の取得に失敗しました、再アクセスしてください。"
     redirect_to root_url
