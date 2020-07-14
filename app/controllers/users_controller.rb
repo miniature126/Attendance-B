@@ -12,6 +12,10 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
   end
   
+  def search
+    
+  end
+  
   def show
     @worked_sum = @attendances.where.not(started_at: nil).count
   end
@@ -85,4 +89,6 @@ class UsersController < ApplicationController
     def basic_info_params
       params.require(:user).permit(:department, :basic_time, :work_time)
     end
+    
+    
 end
