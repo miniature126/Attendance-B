@@ -9,14 +9,10 @@ class UsersController < ApplicationController
   before_action :set_one_month, only: :show
   
   def index
-    #params[:search]が存在しない場合、searchしない
-    if params[:search].present?
-      @users = User.where(activated: true).paginate(page: params[:page]).search(params[:search]) #self.search(search)
-    else
-      @users = User.paginate(page: params[:page])
-    end
+    #全てのユーザー、ページネーション設定、form_withのtext_fieldで受け取ったparams[:search]の中身をself.searchに引数として渡す
+    @users = User.all.paginate(page: params[:page]).search(params[:search])
   end
-  
+
   def show
     @worked_sum = @attendances.where.not(started_at: nil).count
   end

@@ -49,7 +49,7 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
   
-  def self.search(search)
+  def self.search(search) #User.searchと同義
     if search
       where(["name LIKE ?", "%#{search}%"]) #User.は省略
     else
