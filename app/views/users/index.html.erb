@@ -9,14 +9,12 @@
   <!--検索後もページはindex.html.erbのままなので、urlはusers_pathを指定する-->
   <%= form_with url: users_path, method: :get, local: true do |f| %>
     <%= f.label "ユーザー名検索"%>
-    <div class="row">
-      <div class="col-md-8">
+    <div class="input-group">
         <!--今回のtext_fieldの中身はparams[:search]で取り出すことができる-->
-        <%= f.text_field :search, class: "form-control" %>
-      </div>
-      <div class="col-md-4">
+        <%= f.text_field :search, class: "form-control", placeholder: "キーワードを入力…" %>
+      <div class="input-group-addon">
         <!--クリックするとusera_path(ユーザー一覧ページ)にデータを送信-->
-        <%= f.submit "検索", class: "btn btn-primary" %>
+        <%= f.submit "検索", class: "btn-primary" %>
       </div>
     </div>
   <% end %>
